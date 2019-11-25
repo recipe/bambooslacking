@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+# generating cryptokey with random string
+T="$(openssl rand -base64 48)"
+sed -i "s#\"cryptokey\".*#\"cryptokey\": \"$T\",#" /etc/bambooslacking/config.json-sample
+
+systemctl enable bambooslacking
+systemctl daemon-reload

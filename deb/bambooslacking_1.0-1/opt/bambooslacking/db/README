@@ -1,0 +1,2 @@
+This file is needed just for automatic directory creation during package installation.
+/opt/bambooslacking/db/bsdb is the database location.

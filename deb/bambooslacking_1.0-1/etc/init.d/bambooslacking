@@ -1,0 +1,40 @@
+#!/bin/bash
+
+### BEGIN INIT INFO
+# Provides:          bambooslacking
+# Required-Start:    $all
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: BambooSlacking service is a Slack bot that is integrated with BambooHR
+# Description:       Start the service
+#  This script will start the BambooSlacking service.
+### END INIT INFO
+
+set -e
+
+case "$1" in
+start)
+   /usr/local/bin/bambooslacking
+   ;;
+stop)
+   kill `cat /var/run/bambooslacking.pid`
+   rm /var/run/bambooslacking.pid
+   ;;
+restart)
+   $0 stop
+   $0 start
+   ;;
+status)
+   if [ -e /var/run/bambooslacking.pid ]; then
+      echo bambooslacking is running, pid=`cat /var/run/bambooslacking.pid`
+   else
+      echo bambooslacking is NOT running
+      exit 1
+   fi
+   ;;
+*)
+   echo "Usage: $0 {start|stop|status|restart}"
+esac
+
+exit 0
