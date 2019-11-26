@@ -65,7 +65,7 @@ systemctl start bambooslacking
 Initialization
 --
 When application is installed properly and it's running you can use slash command 
-`\whoisout help` to see available options.
+`/whoisout help` to see available options.
  
 `/whoisout install <bamboohr_subdomain> <bamboohr_secret>` is necessary to bind your 
 BambooHR account to a Slack workspace. When it's done successfully profile statuses
