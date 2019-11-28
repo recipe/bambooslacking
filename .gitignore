@@ -3,3 +3,4 @@
 /build/debug/*
 /build/release/*
 /deb/**/bin/bambooslacking
+/deb/**/bambooslacking*.deb
