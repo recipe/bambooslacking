@@ -1,0 +1,5 @@
+/.idea/
+/.vagrant/
+/build/debug/*
+/build/release/*
+/deb/**/bin/bambooslacking
