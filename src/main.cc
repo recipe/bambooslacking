@@ -11,8 +11,6 @@
 
 INITIALIZE_EASYLOGGINGPP
 
-// TODO publish announces to main channel
-
 /// @brief starts periodic tack in the separate thread
 /// @param func lambda function to invoke
 /// @param interval_sec interval in seconds to start
@@ -24,11 +22,11 @@ void timer_start(std::function<void(void)> func, unsigned int interval_sec) {
       try {
         func();
       } catch (web::http::http_exception& e) {
-        LOG(FATAL) << "Sync: HTTP Error: " << e.what();
+        LOG(ERROR) << "Sync: HTTP Error: " << e.what();
       } catch (std::runtime_error& e) {
-        LOG(FATAL) << "Sync: Runtime Error: " << e.what();
+        LOG(ERROR) << "Sync: Runtime Error: " << e.what();
       } catch (std::exception& e) {
-        LOG(FATAL) << "Sync: Fatal Error:" << e.what();
+        LOG(ERROR) << "Sync: Fatal Error: " << e.what();
       }
 
       std::this_thread::sleep_until(x);

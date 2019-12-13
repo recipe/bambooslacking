@@ -59,6 +59,7 @@ class BambooHrApiError : public std::exception {
 
     return ss.str().c_str();
   }
+
  private:
   /// @brief error message
   std::string m_what;
