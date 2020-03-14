@@ -27,18 +27,19 @@ Installation
 
 ```bash
 # download a latest version of cmake
-get -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
+curl -O https://apt.kitware.com/keys/kitware-archive-latest.asc
+sudo apt-key add kitware-archive-latest.asc
 sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 # install all necessary libraries
 apt update
-apt install cmake libcpprest-dev libboost-all-dev libleveldb-dev
+apt -y install cmake libcpprest-dev libboost-all-dev libleveldb-dev
 # clone this repo with the source code
 git clone https://github.com/recipe/bambooslacking.git
 # compile application
-cd bambooslacking
+cd bambooslacking/build/release
 /usr/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" ./
-/usr/bin/cmake --build build/release --target bambooslacking -- -j 1
-cd deb
+/usr/bin/cmake --build ./ --target bambooslacking -- -j 1
+cd ../../deb
 # build a package
 ./build.sh
 # install a package
