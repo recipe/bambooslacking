@@ -37,8 +37,8 @@ apt -y install cmake libcpprest-dev libboost-all-dev libleveldb-dev
 git clone https://github.com/recipe/bambooslacking.git
 # compile application
 cd bambooslacking/build/release
-/usr/bin/cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" ../../
-/usr/bin/cmake --build ./ --target bambooslacking -- -j 1
+cmake ../../
+make
 cd ../../deb
 # build a package
 ./build.sh

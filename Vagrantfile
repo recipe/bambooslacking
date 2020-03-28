@@ -102,7 +102,17 @@ Vagrant.configure("2") do |config|
     dpkg-reconfigure --frontend noninteractive tzdata
 
     echo -e "\n-- Installing dependencies --\n"
-    apt-get install -y ntpdate cmake gdb libcpprest-dev libboost-all-dev libleveldb-dev
+    apt-get install -y ntpdate cmake gdb libcpprest-dev libboost-all-dev libleveldb-dev \
+    libgtest-dev valgrind
+
+    echo -e "\n-- Installing googletest --\n"
+    wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
+    tar xf release-1.7.0.tar.gz
+    cd googletest-release-1.7.0
+    sudo cmake -DBUILD_SHARED_LIBS=ON .
+    sudo make
+    sudo cp -a include/gtest /usr/include
+    sudo cp -a libgtest_main.so libgtest.so /usr/lib/
 
     echo -e "\n-- Generating SSL self-signed certificate --\n"
     openssl req -newkey rsa:2048 -new -nodes -x509 -sha256 -days 3650 \
