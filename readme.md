@@ -23,7 +23,7 @@ Installation
 `users:read.email`,
 `users:read`, 
 `commands`.
-* Download and install binary package: 
+* Download and install binary package for ubuntu-18.04: 
 
 ```bash
 apt update
