@@ -2,6 +2,7 @@
 
 #include <string>
 #include <cpprest/http_listener.h>
+#include <boost/asio/ssl/context.hpp>
 
 namespace bs {
 /// @brief Basic controller for the application REST service

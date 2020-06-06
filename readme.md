@@ -26,13 +26,28 @@ Installation
 * Download source code, build and install a package (Currently only ubuntu-18.04 is tested)
 
 ```bash
+sudo su -
 # download a latest version of cmake
 curl -O https://apt.kitware.com/keys/kitware-archive-latest.asc
-sudo apt-key add kitware-archive-latest.asc
-sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
+apt-key add kitware-archive-latest.asc
+apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 # install all necessary libraries
 apt update
-apt -y install cmake libcpprest-dev libboost-all-dev libleveldb-dev
+apt -y install cmake libboost-all-dev libleveldb-dev
+
+# we are building cpprestsdk from a source code
+apt install -y git libssl-dev ninja-build
+cd /usr/src
+git clone https://github.com/microsoft/cpprestsdk.git
+cd cpprestsdk
+git checkout tags/v2.10.16
+git submodule update --init
+mkdir build.release
+cd build.release
+cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=0
+ninja
+ninja install
+
 # clone this repo with the source code
 git clone https://github.com/recipe/bambooslacking.git
 # compile application

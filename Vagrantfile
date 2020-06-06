@@ -4,8 +4,8 @@
 ### Configuration options ###
 SRC_SSH_PUBLIC_KEY = "~/.ssh/id_rsa.pub"
 BOX_HOST_NAME = "bambooslacking"
-BOX_CPUS = 2
-BOX_MEMORY = 3072
+BOX_CPUS = 4
+BOX_MEMORY = 4096
 
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
@@ -100,12 +100,29 @@ Vagrant.configure("2") do |config|
     echo -e "\n--- Setting timezone ---\n"
     timedatectl set-timezone Europe/Kiev
     dpkg-reconfigure --frontend noninteractive tzdata
+    apt install -y ntpdate
 
     echo -e "\n-- Installing dependencies --\n"
-    apt-get install -y ntpdate cmake gdb libcpprest-dev libboost-all-dev libleveldb-dev \
-    libgtest-dev valgrind
+    apt install -y cmake gdb libboost-all-dev libleveldb-dev
+
+    # ubuntu18.04 contains too old version of cpprestsdk.
+    #apt install -y libcpprest-dev
+
+    # build cpprestsdk static library /usr/local/lib/libcpprest.a
+    apt install -y libssl-dev ninja-build
+    cd /usr/src
+    git clone https://github.com/microsoft/cpprestsdk.git
+    cd cpprestsdk
+    git checkout tags/v2.10.16
+    git submodule update --init
+    mkdir build.release
+    cd build.release
+    cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=0
+    ninja
+    ninja install
 
     echo -e "\n-- Installing googletest --\n"
+    apt install -y libgtest-dev valgrind
     wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
     tar xf release-1.7.0.tar.gz
     cd googletest-release-1.7.0

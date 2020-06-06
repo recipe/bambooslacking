@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdexcept>
+#include <boost/algorithm/string.hpp>
 #include <cpprest/http_client.h>
 #include "common.h"
 

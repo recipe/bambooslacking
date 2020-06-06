@@ -4,7 +4,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 option(test "Build all tests" OFF)
 
-set(cpprestsdk_DIR /usr/lib/${CMAKE_LIBRARY_ARCHITECTURE}/cmake/)
+set(cpprestsdk_DIR /usr/local/lib/cmake)
 
 find_path(
     LevelDB_INCLUDE NAMES leveldb/db.h
@@ -22,6 +22,8 @@ if(LEVELDB_FOUND)
     message(STATUS "Found LevelDB (include: ${LevelDB_INCLUDE}, library: ${LevelDB_LIBRARY})")
 endif()
 
+set(OPENSSL_USE_STATIC_LIBS TRUE)
+find_package(OpenSSL REQUIRED)
 find_package(cpprestsdk REQUIRED)
 find_package(Boost REQUIRED COMPONENTS atomic chrono thread exception)
 
@@ -37,7 +39,7 @@ set(BAMBOOSLACKING_INCLUDE_DIR "./src/include")
 target_include_directories(bambooslacking PRIVATE ${BAMBOOSLACKING_INCLUDE_DIR})
 target_link_libraries(
     bambooslacking PRIVATE
-    cpprestsdk::cpprest leveldb
+    cpprestsdk::cpprest OpenSSL::SSL leveldb
     Boost::atomic Boost::chrono Boost::exception Boost::thread Boost::date_time
 )
 
@@ -71,10 +73,10 @@ if (test)
 
     target_link_libraries(
         bambooslacking-test PRIVATE
-        cpprestsdk::cpprest leveldb
+        cpprestsdk::cpprest OpenSSL::SSL leveldb
         Boost::atomic Boost::chrono Boost::exception Boost::thread Boost::date_time
         gtest gtest_main
     )
 
-    add_test(NAME bambooslacingTest COMMAND bambooslacking-test -v)
+    add_test(NAME bambooslackingTest COMMAND bambooslacking-test -v)
 endif()
