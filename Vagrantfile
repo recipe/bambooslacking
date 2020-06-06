@@ -90,6 +90,13 @@ Vagrant.configure("2") do |config|
     cat /home/vagrant/.ssh/id_rsa.pub >> /home/vagrant/.ssh/authorized_keys
     cat /home/vagrant/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys
 
+    echo -e "\n-- Allocating a swap file for cmake builds"
+    fallocate -l 3G /swapfile
+    chmod 600 /swapfile
+    mkswap /swapfile
+    swapon /swapfile
+    echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
+
     echo -e "\n-- Add a package for cmake"
     wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | sudo apt-key add -
     sudo apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
@@ -122,6 +129,7 @@ Vagrant.configure("2") do |config|
     ninja install
 
     echo -e "\n-- Installing googletest --\n"
+    cd /usr/src
     apt install -y libgtest-dev valgrind
     wget https://github.com/google/googletest/archive/release-1.7.0.tar.gz
     tar xf release-1.7.0.tar.gz

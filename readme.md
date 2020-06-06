@@ -35,6 +35,13 @@ apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
 apt update
 apt -y install cmake libboost-all-dev libleveldb-dev
 
+# in case ninja build fails with cannot allocate memory we have to create a swap file:
+fallocate -l 3G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
+
 # we are building cpprestsdk from a source code
 apt install -y git libssl-dev ninja-build
 cd /usr/src
@@ -49,6 +56,7 @@ ninja
 ninja install
 
 # clone this repo with the source code
+cd /usr/src
 git clone https://github.com/recipe/bambooslacking.git
 # compile application
 cd bambooslacking/build/release
