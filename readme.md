@@ -23,7 +23,19 @@ Installation
 `users:read.email`,
 `users:read`, 
 `commands`.
-* Download source code, build and install a package (Currently only ubuntu-18.04 is tested)
+* Download and install binary package: 
+
+```bash
+apt update
+apt -y install libboost-all-dev libleveldb-dev
+curl -O https://github.com/recipe/bambooslacking/releases/download/v1.0/bambooslacking-1.0-1.bionic_amd64.deb
+dpkg -i bambooslacking-1.0-1.bionic_amd64.deb
+```
+
+* If you want you may also build and install a package from the source code:
+
+<details><summary>Click to show example</summary>
+<p>
 
 ```bash
 sudo su -
@@ -68,6 +80,8 @@ cd ../../deb
 # install a package
 dpkg -i bambooslacking_1.0-1.deb
 ```
+</p>
+</details>
 
 * Set config for an application:
 ```
