@@ -32,9 +32,7 @@ curl -O https://github.com/recipe/bambooslacking/releases/download/v1.0/bamboosl
 dpkg -i bambooslacking-1.0-1.bionic_amd64.deb
 ```
 
-* If you want you may also build and install a package from the source code:
-
-<details><summary>Click to show example</summary>
+<details><summary>If you want you may also build and install a package from the source code. Click to show example</summary>
 <p>
 
 ```bash
