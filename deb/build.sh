@@ -3,7 +3,7 @@
 set -e
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-VERSION="1.0-1"
+VERSION="1.1-1"
 
 # it depends on your build settings
 mkdir -p $DIR/bambooslacking_$VERSION/usr/local/bin

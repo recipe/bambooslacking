@@ -5,7 +5,7 @@
 
 namespace bs {
 const std::string Version() {
-  return "1.0-1";
+  return "1.1-1";
 }
 
 const std::string GetUserAgent() {

@@ -7,7 +7,7 @@ sudo ./build.sh
 To install a package:
 
 ```
-sudo dpkg -i bambooslacking_1.0-1.deb
+sudo dpkg -i bambooslacking_1.1-1.deb
 ```
 
 In case of any dependency error install dependencies with running:

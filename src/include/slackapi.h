@@ -32,6 +32,8 @@ struct TimeOff {
     OVERTIME_WORK, // has the highest priority
     VACATION,
     DAY_OFF,
+    PARENTAL_LEAVE,
+    TRAINING,
     SICK,
     REMOTE_WORK,
     BUSINESS_TRIP,
@@ -43,6 +45,8 @@ struct TimeOff {
       {"Overtime Work", Type::OVERTIME_WORK},
       {"Vacation", Type::VACATION},
       {"Unpaid Day Off", Type::DAY_OFF},
+      {"Paternity/Maternity Leave", Type::PARENTAL_LEAVE},
+      {"Training", Type::TRAINING},
       {"Sick", Type::SICK},
       {"Remote Work", Type::REMOTE_WORK},
       {"Business trip", Type::BUSINESS_TRIP},
@@ -74,6 +78,22 @@ struct TimeOff {
               "Day off",
               ":family:",
               "Day off"
+          }
+      },
+      {
+          TimeOff::Type::PARENTAL_LEAVE,
+          {
+              "Parental leave",
+              ":family:",
+              "Day off"
+          }
+      },
+      {
+          TimeOff::Type::TRAINING,
+          {
+              "On training",
+              ":mortar_board:",
+              "Training"
           }
       },
       {

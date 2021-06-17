@@ -28,8 +28,8 @@ Installation
 ```bash
 apt update
 apt -y install libboost-all-dev libleveldb-dev
-curl -O https://github.com/recipe/bambooslacking/releases/download/v1.0/bambooslacking-1.0-1.bionic_amd64.deb
-dpkg -i bambooslacking-1.0-1.bionic_amd64.deb
+curl -O https://github.com/recipe/bambooslacking/releases/download/v1.1/bambooslacking-1.1-1.bionic_amd64.deb
+dpkg -i bambooslacking-1.1-1.bionic_amd64.deb
 ```
 
 <details><summary>If you want you may also build and install a package from the source code. Click to show example</summary>
@@ -76,7 +76,7 @@ cd ../../deb
 # build a package
 ./build.sh
 # install a package
-dpkg -i bambooslacking_1.0-1.deb
+dpkg -i bambooslacking_1.1-1.deb
 ```
 </p>
 </details>
