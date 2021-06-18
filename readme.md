@@ -81,31 +81,30 @@ dpkg -i bambooslacking_1.1-1.deb
 </p>
 </details>
 
-* Set config for an application:
+* Set the config for the application:
 ```
 cp /etc/bambooslacking/config.json-sample /etc/bambooslacking/config.json
 ```
 
-Change `server_endpoint` (use public IP address of your web server).
-Provide `slack_client_id`, `slack_client_secret` and `slack_signing_secret` which 
-have been obtained by installing Slack application. 
+Change the `server_endpoint` (use the public IP address of your web server).
+Provide `slack_client_id`, `slack_client_secret` and `slack_signing_secret` that 
+should be obtained while installing the Slack application. 
 Use offered randomly generated `cryptokey` or provide your own with the same length (64 characters).
-If you want your application works over https you should generate SSL certificate.
-You may generate either self signed certificate or install [Let's encrypt](https://letsencrypt.org/) certificate.
+If you want the application to work over the HTTPS, you should generate the SSL certificate.
+You may generate either a self-signed certificate or install [Let's encrypt](https://letsencrypt.org/) certificate.
 
-To start a service run following command:
+To start the service run the following command:
 ```
 systemctl start bambooslacking
 ```
 
 Initialization
 --
-When application is installed properly and it's running you can use slash command 
-`/whoisout help` to see available options.
+If the application is installed and running you can use the slash command 
+`/whoisout help` to see all available options.
  
-`/whoisout install <bamboohr_subdomain> <bamboohr_secret>` is necessary to bind your 
-BambooHR account to a Slack workspace. When it's done successfully profile statuses
-of users from the BambooHR account who exist in the Slack workspace will update automatically 
-according to BambooHR's time offs table. Users are matched by comparing their 
-email addresses.
+`/whoisout install <bamboohr_subdomain> <bamboohr_secret>`command is necessary to bind your 
+BambooHR account to a Slack workspace. The profile statuses of users that exist in the Slack workspace 
+will be updated automatically according to BambooHR's time off table. 
+The application matches users by comparing their email addresses.
 
