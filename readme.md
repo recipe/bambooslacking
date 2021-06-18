@@ -8,7 +8,7 @@ Features
 --
 
 * Automatically synchronizes current Slack user profile statuses 
-for all members of your team based on BambooHR time offs table.
+for all members of your team based on BambooHR's time off table.
 * Gives an information about who is out today by using /whoisout slash command. 
 
 Installation
