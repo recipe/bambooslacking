@@ -6,7 +6,7 @@ VERSION="1.2-1"
 BS="bambooslacking"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 BUILD="${DIR}/../build"
-PKG="${BUILD}/${BS}_${VERSION}"
+PKG="${BUILD}/${BS}-${VERSION}"
 BUILD_TYPE="release"
 
 cp -r "${DIR}/${BS}" "$PKG"
