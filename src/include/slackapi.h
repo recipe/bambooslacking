@@ -50,7 +50,7 @@ struct TimeOff {
       {"Training", Type::TRAINING},
       {"Sick", Type::SICK},
       {"Remote Work", Type::REMOTE_WORK},
-      {"Office Work", Type::OFFICE_WORK},
+      {"Office work", Type::OFFICE_WORK},
       {"Business trip", Type::BUSINESS_TRIP},
       {"Bereavement", Type::BEREAVEMENT}
   };
@@ -61,9 +61,9 @@ struct TimeOff {
       {
           TimeOff::Type::OVERTIME_WORK,
           {
-              "Overtime Work",
+              "Overtime work",
               ":bee:",
-              "Overtime Work"
+              "Overtime work"
           }
       },
       {
