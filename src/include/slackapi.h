@@ -119,7 +119,7 @@ struct TimeOff {
           {
               "Working in the office",
               ":office:",
-              "Working remotely"
+              "At the office"
           }
       },
       {
