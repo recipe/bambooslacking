@@ -28,55 +28,33 @@ Installation
 ```bash
 apt update
 apt -y install libboost-all-dev libleveldb-dev
-curl -O https://github.com/recipe/bambooslacking/releases/download/v1.1/bambooslacking-1.1-1.bionic_amd64.deb
-dpkg -i bambooslacking-1.1-1.bionic_amd64.deb
+curl -O https://github.com/recipe/bambooslacking/releases/download/v1.2/bambooslacking-1.2-1.bionic_amd64.deb
+dpkg -i bambooslacking-1.2-1.bionic_amd64.deb
 ```
 
-<details><summary>If you want you may also build and install a package from the source code. Click to show example</summary>
+<details><summary>You also may build a package from the source code. Click to show example</summary>
 <p>
 
+Build and run a docker container
 ```bash
-sudo su -
-# download a latest version of cmake
-curl -O https://apt.kitware.com/keys/kitware-archive-latest.asc
-apt-key add kitware-archive-latest.asc
-apt-add-repository 'deb https://apt.kitware.com/ubuntu/ bionic main'
-# install all necessary libraries
-apt update
-apt -y install cmake libboost-all-dev libleveldb-dev
-
-# in case ninja build fails with cannot allocate memory we have to create a swap file:
-fallocate -l 3G /swapfile
-chmod 600 /swapfile
-mkswap /swapfile
-swapon /swapfile
-echo '/swapfile none swap sw 0 0' | tee -a /etc/fstab
-
-# we are building cpprestsdk from a source code
-apt install -y git libssl-dev ninja-build
-cd /usr/src
-git clone https://github.com/microsoft/cpprestsdk.git
-cd cpprestsdk
-git checkout tags/v2.10.16
-git submodule update --init
-mkdir build.release
-cd build.release
-cmake -G Ninja .. -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=0
-ninja
-ninja install
-
-# clone this repo with the source code
-cd /usr/src
 git clone https://github.com/recipe/bambooslacking.git
-# compile application
-cd bambooslacking/build/release
-cmake ../../
+cd bambooslacking
+docker build -t bambooslacking:latest . 
+export WORKDIR=/usr/src/bambooslacking
+docker run -it --rm --name builder -w "$WORKDIR" -v "$(pwd)":"$WORKDIR" --tmpfs /tmp bambooslacking /bin/bash
+```
+Execute the following inside the container:
+```bash
+rm -fr build && mkdir -p build/release
+cd build/release
+cmake ../..
 make
-cd ../../deb
-# build a package
-./build.sh
-# install a package
-dpkg -i bambooslacking_1.1-1.deb
+cd ../..
+# build the package
+./deb/build.sh
+# to install the package
+PKG=$(ls ./build/bambooslacking*.deb)
+dpkg -i "$PKG"
 ```
 </p>
 </details>

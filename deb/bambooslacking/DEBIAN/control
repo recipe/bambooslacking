@@ -1,8 +1,8 @@
 Package: bambooslacking
-Version: 1.1-1
+Version: %VERSION%
 Section: base
 Priority: optional
-Architecture: amd64
+Architecture: %ARCH%
 Depends: libboost-all-dev (>= 1.65), libleveldb-dev (>= 1.20-2)
 Maintainer: recipe <recipe@ukr.net>
 Description: BambooSlacking service is a Slack bot that is integrated with BambooHR

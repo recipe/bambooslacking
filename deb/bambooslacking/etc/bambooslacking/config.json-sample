@@ -1,5 +1,5 @@
 {
-  "server_endpoint": "https://192.168.33.10:443/",
+  "server_endpoint": "https://127.0.0.1:443/",
   "slack_client_id": "",
   "slack_client_secret": "",
   "slack_signing_secret": "",

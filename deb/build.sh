@@ -2,23 +2,26 @@
 
 set -e
 
+VERSION="1.2-1"
+BS="bambooslacking"
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-VERSION="1.1-1"
+BUILD="${DIR}/../build"
+PKG="${BUILD}/${BS}_${VERSION}"
+BUILD_TYPE="release"
 
-# it depends on your build settings
-mkdir -p $DIR/bambooslacking_$VERSION/usr/local/bin
-cp $DIR/../build/release/bambooslacking $DIR/bambooslacking_$VERSION/usr/local/bin/bambooslacking
+cp -r "${DIR}/${BS}" "$PKG"
+mkdir -p "${PKG}/usr/local/bin"
+cp "${BUILD}/${BUILD_TYPE}/${BS}" "${PKG}/usr/local/bin/${BS}"
+chmod a+x "${PKG}/etc/init.d/${BS}" "$PKG/usr/local/bin/${BS}" "${PKG}/DEBIAN/postinst" "${PKG}/DEBIAN/postrm"
 
-chmod a+x $DIR/bambooslacking_$VERSION/etc/init.d/bambooslacking \
-$DIR/bambooslacking_$VERSION/usr/local/bin/bambooslacking \
-$DIR/bambooslacking_$VERSION/DEBIAN/postinst \
-$DIR/bambooslacking_$VERSION/DEBIAN/postrm
-
-dpkg-deb --build $DIR/bambooslacking_$VERSION
-
-# port binary files back to repo in case vagrant deployment is being used
-VAGRANT_DIR="/deb/bambooslacking_$VERSION"
-if [ -d "$VAGRANT_DIR" ]; then
-cp $DIR/../build/release/bambooslacking $VAGRANT_DIR/usr/local/bin/
-cp $DIR/bambooslacking_$VERSION.deb /deb/
+ARCH=$(uname -m)
+if [ "${ARCH}" == "aarch64" ]; then
+  ARCH="arm64"
+else
+  ARCH="amd64"
 fi
+
+sed -i "s/Version:.*/Version: ${VERSION}/" "${PKG}/DEBIAN/control"
+sed -i "s/Architecture:.*/Architecture: ${ARCH}/" "${PKG}/DEBIAN/control"
+
+dpkg-deb --build "${PKG}"

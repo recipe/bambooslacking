@@ -36,6 +36,7 @@ struct TimeOff {
     TRAINING,
     SICK,
     REMOTE_WORK,
+    OFFICE_WORK,
     BUSINESS_TRIP,
     BEREAVEMENT
   };
@@ -49,6 +50,7 @@ struct TimeOff {
       {"Training", Type::TRAINING},
       {"Sick", Type::SICK},
       {"Remote Work", Type::REMOTE_WORK},
+      {"Office Work", Type::OFFICE_WORK},
       {"Business trip", Type::BUSINESS_TRIP},
       {"Bereavement", Type::BEREAVEMENT}
   };
@@ -108,7 +110,15 @@ struct TimeOff {
           TimeOff::Type::REMOTE_WORK,
           {
               "Working remotely",
-              ":house_with_garden:",
+              ":house:",
+              "Working remotely"
+          }
+      },
+      {
+          TimeOff::Type::OFFICE_WORK,
+          {
+              "Working in the office",
+              ":office:",
               "Working remotely"
           }
       },
