@@ -1,7 +1,7 @@
 BambooSlacking  
 ==
 
-This project has been **superseded** by [bamboohr-slack-bot](https://github.com/recipe/bamboohr-slack-bot), and won't received updates or bug fixes.
+This project has been **superseded** by [bamboohr-slack-bot](https://github.com/recipe/bamboohr-slack-bot), and won't receive updates or bug fixes.
 
 ----
 
