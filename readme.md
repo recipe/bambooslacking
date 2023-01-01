@@ -1,7 +1,11 @@
-BambooHR "who is out" Slack bot  
+BambooSlacking  
 ==
 
-BambooSlacking is a Slack bot that's integrated with your BambooHR account 
+This project has been **superseded** by [bamboohr-slack-bot](https://github.com/recipe/bamboohr-slack-bot), and won't received updates or bug fixes.
+
+----
+
+**BambooSlacking** is a Slack bot that's integrated with your BambooHR account 
 and can tell who is out today.
 
 Features
